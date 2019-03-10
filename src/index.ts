@@ -1,15 +1,9 @@
 import 'reflect-metadata';
 
-import { injectable } from 'inversify';
-import { Container } from './container';
-import { Inject } from './helpers';
-
-// How to inject a dependency
-// @Inject() nameService: INameService;
-
-export const container: Container = new Container();
+import { injectable, container, Inject } from 'inversify-props';
 
 export {
-  Inject,
-  injectable
+  injectable,
+  container,
+  Inject
 };
