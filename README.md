@@ -40,5 +40,5 @@ function ExampleComponent() {
 If you're using uglify or similar you need to [configure well the plugin](https://github.com/ckgrafico/inversify-props#how-to-configure-uglify).
 
 ## Next steps
-- Remove id param, and use `magic if` like in inversify-props.
+- Remove id param, and use `magic id` like in inversify-props.
 
