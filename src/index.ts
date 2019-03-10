@@ -1,9 +1,6 @@
-import 'reflect-metadata';
-
-import { injectable, container, Inject } from 'inversify-props';
+export * from 'inversify-props';
+import { useService } from './use-service.hook';
 
 export {
-  injectable,
-  container,
-  Inject
+  useService
 };

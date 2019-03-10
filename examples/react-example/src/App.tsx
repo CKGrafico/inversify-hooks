@@ -1,13 +1,13 @@
-import { container } from 'inversify-hooks';
 import React, { useState } from 'react';
 import { IService1 } from './shared';
+import { useService } from 'inversify-hooks';
 
 function App() {
   // Declare a new state variable, which we'll call "count"
   const [count, setCount] = useState(0);
 
-  const a: IService1 = container.get('IService1');
-  console.log(a.method1());
+  const service1 = useService<IService1>('IService1');
+  console.log(service1.method1());
 
   return (
     <div>

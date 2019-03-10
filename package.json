@@ -1,7 +1,7 @@
 {
   "name": "inversify-hooks",
-  "version": "1.1.0",
-  "description": "Under construction",
+  "version": "1.2.0",
+  "description": "Wrapper of inversify-props to inject your dependencies in the components, made with TypeScript using hooks.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "author": "Quique Fdez Guerra",
