@@ -22,8 +22,10 @@
     "react inject",
     "react hooks"
   ],
+  "peerDependencies": {
+    "reflect-metadata": "0.1.12"
+  },
   "dependencies": {
-    "inversify-props": "^1.3.0",
-    "reflect-metadata": "^0.1.12"
+    "inversify-props": "^1.3.0"
   }
 }
