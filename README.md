@@ -11,8 +11,26 @@ This package is a wrapper of [inversify-props](https://github.com/ckgrafico/inve
 
 ## Installation
 ```
-npm install --save inversify-hooks reflect-metadata@0.1.12
+$ npm install inversify-hooks reflect-metadata --save
 ```
+
+The inversify-hooks type definitions are included in the inversify-hooks npm package.
+
+> :warning: **Important!** inversify-hooks requires TypeScript >= 2.0 and the `experimentalDecorators`, `emitDecoratorMetadata`, `types` and `lib`
+compilation options in your `tsconfig.json` file.
+
+```js
+{
+    "compilerOptions": {
+        "target": "es5",
+        "lib": ["es6"],
+        "types": ["reflect-metadata"],
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true
+    }
+}
 
 ## Usage
 ```
