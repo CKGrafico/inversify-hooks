@@ -16,6 +16,31 @@ $ npm install inversify-hooks reflect-metadata --save
 
 The inversify-hooks type definitions are included in the inversify-hooks npm package.
 
+## How to use
+```
+import 'reflect-metadata'; // Import only once
+import { container, useContainer } from 'inversify-hooks';
+
+container.addSingleton<IService1>(Service1);
+
+function ExampleComponent() {
+  const service1 = useContainer<IService1>(cid.IService1);
+  
+  useEffect(() => {
+    service1.asyncMethod();
+  }, [])
+}
+```
+
+## You can also use any ID that you prefer
+```
+container.addSingleton<IService1>(Service1, 'MyService1');
+
+function ExampleComponent() {
+  const service1 = useContainer<IService1>('MyService1');
+}
+```
+
 > :warning: **Important!** inversify-hooks requires TypeScript >= 2.0 and the `experimentalDecorators`, `emitDecoratorMetadata`, `types` and `lib`
 compilation options in your `tsconfig.json` file.
 
@@ -31,24 +56,6 @@ compilation options in your `tsconfig.json` file.
         "emitDecoratorMetadata": true
     }
 }
-
-## Usage
-```
-container.addSingleton<IService1>(Service1);
-
-function ExampleComponent() {
-  const service1 = useContainer<IService1>(cid.IService1);
-}
-```
-
-## You can also use any ID that you prefer
-```
-container.addSingleton<IService1>(Service1, 'MyService1');
-
-function ExampleComponent() {
-  const service1 = useContainer<IService1>('MyService1');
-}
-```
 
 ## Why we made this package
 You can learn more about why we made this packages in the [original repo](https://github.com/ckgrafico/inversify-props#why-we-made-this-package).
