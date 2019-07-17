@@ -56,6 +56,7 @@ compilation options in your `tsconfig.json` file.
         "emitDecoratorMetadata": true
     }
 }
+```
 
 ## Why we made this package
 You can learn more about why we made this packages in the [original repo](https://github.com/ckgrafico/inversify-props#why-we-made-this-package).
