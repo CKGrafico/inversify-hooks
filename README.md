@@ -58,6 +58,9 @@ compilation options in your `tsconfig.json` file.
 }
 ```
 
+## More examples
+There are more examples of how to use the container in services or other components in [inversify-props](https://github.com/ckgrafico/inversify-props#how-to-use)
+
 ## Why we made this package
 You can learn more about why we made this packages in the [original repo](https://github.com/ckgrafico/inversify-props#why-we-made-this-package).
 
