@@ -4133,16 +4133,16 @@ invariant@^2.2.2, invariant@^2.2.4:
     loose-envify "^1.0.0"
 
 "inversify-hooks@file:../..":
-  version "1.3.0"
+  version "1.3.93"
   dependencies:
-    inversify-props "^1.3.0"
+    inversify-props "^1.3.93"
 
-inversify-props@^1.3.0:
-  version "1.3.0"
-  resolved "https://registry.yarnpkg.com/inversify-props/-/inversify-props-1.3.0.tgz#5167de8eb53522650767636717b6d1dea2e6ee1d"
+inversify-props@^1.3.93:
+  version "1.3.93"
+  resolved "https://registry.yarnpkg.com/inversify-props/-/inversify-props-1.3.93.tgz#c6b6c3ed43e13e061d6147b14fdb7a47a9c90f19"
+  integrity sha512-ufH8TXzd05CRqDGMwujzAO1coSsr0zQ1PtuOy8yD5UE1QXhBmIb34KZ3/Ulj6l282g54Qzr2gyg32AHdkOAsNw==
   dependencies:
     inversify "^5.0.1"
-    reflect-metadata "^0.1.12"
     typescript "^3.5.3"
 
 inversify@^5.0.1:
