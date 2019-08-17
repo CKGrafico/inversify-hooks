@@ -24,9 +24,13 @@ import { container, useContainer } from 'inversify-hooks';
 container.addSingleton<IService1>(Service1);
 
 function ExampleComponent() {
-  const service1 = useContainer<IService1>(cid.IService1);
-  
+  const [service1] = useContainer<IService1>(cid.IService1);
+
   useEffect(() => {
+    if (!service1) {
+      return;
+    }
+
     service1.asyncMethod();
   }, [])
 }
