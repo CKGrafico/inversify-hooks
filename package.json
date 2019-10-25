@@ -24,6 +24,6 @@
   ],
   "dependencies": {
     "inversify-props": "^1.4.3",
-    "react": "^16.9.0"
+    "react": "^16.11.0"
   }
 }
