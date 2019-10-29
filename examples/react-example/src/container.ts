@@ -1,4 +1,4 @@
-import { container } from 'inversify-hooks';
+import { container, cid } from 'inversify-hooks';
 import { IService1, Service1, IService2, Service2, IService3, Service3, Service4, IService4  } from './shared';
 
 export function containerBuilder(): void {

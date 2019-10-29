@@ -1,1 +1,1 @@
-{"version":3,"file":"use-service.hook.js","sourceRoot":"","sources":["../src/use-service.hook.ts"],"names":[],"mappings":";;AAAA,+BAA4C;AAC5C,mDAA4C;AAE5C,SAAgB,YAAY,CAAI,EAAmB;IAC3C,IAAA,uBAAwC,EAAvC,kBAAU,EAAE,qBAA2B,CAAC;IAE/C,iBAAS,CAAC;QACR,aAAa,CAAC,2BAAS,CAAC,GAAG,CAAC,EAAE,CAAC,CAAC,CAAC;IACnC,CAAC,EAAE,EAAE,CAAC,CAAC;IAGP,OAAO,CAAC,UAAe,CAAC,CAAA;AAC1B,CAAC;AATD,oCASC"}
+{"version":3,"file":"use-service.hook.js","sourceRoot":"","sources":["../src/use-service.hook.ts"],"names":[],"mappings":";;AAGA,oBAAoB;AACpB,4BAA4B;AAC5B,IAAI;AAEJ,4DAA4D;AAC5D,kCAAkC;AAClC,IAAI"}

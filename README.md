@@ -19,12 +19,12 @@ The inversify-hooks type definitions are included in the inversify-hooks npm pac
 ## How to use
 ```
 import 'reflect-metadata'; // Import only once
-import { container, useContainer } from 'inversify-hooks';
+import { container, useInject } from 'inversify-hooks';
 
 container.addSingleton<IService1>(Service1);
 
 function ExampleComponent() {
-  const [service1] = useContainer<IService1>(cid.IService1);
+  const [service1] = useInject<IService1>(cid.IService1);
 
   useEffect(() => {
     if (!service1) {
@@ -41,7 +41,7 @@ function ExampleComponent() {
 container.addSingleton<IService1>(Service1, 'MyService1');
 
 function ExampleComponent() {
-  const service1 = useContainer<IService1>('MyService1');
+  const service1 = useInject<IService1>('MyService1');
 }
 ```
 
