@@ -11,7 +11,9 @@
     "emitDecoratorMetadata": true,
     "suppressImplicitAnyIndexErrors": true,
     "allowSyntheticDefaultImports": true,
-    "sourceMap": true
+    "sourceMap": true,
+    "jsx": "react",
+    "baseUrl": "./"
   },
   "exclude": [
     "node_modules",

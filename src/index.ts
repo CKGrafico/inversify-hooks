@@ -1,19 +1,8 @@
-import { interfaces } from 'inversify';
-import { cid, Container as PropsContainer, Inject, inject, injectable } from 'inversify-props';
-import { useContainer } from './use-service.hook';
+import { cid, container, Container, Inject, inject, injectable } from 'inversify-props';
 
-class Container extends PropsContainer {
-  public addSingleton<T>(constructor: {
-    new(...args: any[]): T;
-  }, id?: string): interfaces.BindingWhenOnSyntax<T> {
-
-    const binding = super.addSingleton<T>(constructor);
-
-    return binding;
-  }
+function useInject<T>(id: string | symbol): [T] {
+  return [container.get<T>(id)]
 }
 
-const container: Container = new Container();
-
-export { useContainer, Inject, inject, injectable, Container, cid };
+export { useInject, container, Inject, inject, injectable, Container, cid };
 

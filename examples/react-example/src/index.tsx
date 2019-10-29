@@ -6,4 +6,3 @@ import App from './App';
 
 containerBuilder();
 ReactDOM.render(<App />, document.getElementById('root'));
-

@@ -8,7 +8,7 @@
     "@types/react": "16.8.7",
     "@types/react-dom": "16.8.2",
     "inversify-hooks": "file:../..",
-    "react": "^16.8.4",
+    "react": "file:../../node_modules/react",
     "react-dom": "^16.8.4",
     "react-scripts": "2.1.8",
     "reflect-metadata": "^0.1.12",
