@@ -1,6 +1,6 @@
 {
   "name": "inversify-hooks",
-  "version": "1.5.5",
+  "version": "1.5.11",
   "description": "Wrapper of inversify-props to inject your dependencies in the components, made with TypeScript using hooks.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -23,8 +23,8 @@
     "react hooks"
   ],
   "dependencies": {
-    "@types/react": "^16.8.7",
-    "inversify-props": "^1.4.9",
-    "react": "^16.8.4"
+    "@types/react": "^16.9.19",
+    "inversify-props": "^1.5.0",
+    "react": "^16.12.0"
   }
 }
