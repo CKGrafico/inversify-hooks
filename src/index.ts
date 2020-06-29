@@ -1,6 +1,7 @@
 import {
   cid,
   Container,
+  container,
   getContainer,
   Inject,
   inject,
@@ -27,6 +28,7 @@ export {
   mockRequest,
   mockSingleton,
   mockTransient,
+  container,
   setContainer,
   getContainer
 };
