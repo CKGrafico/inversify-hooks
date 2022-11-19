@@ -10,7 +10,7 @@
     "inversify-hooks": "file:../..",
     "react": "file:../../node_modules/react",
     "react-dom": "^16.8.4",
-    "react-scripts": "2.1.8",
+    "react-scripts": "5.0.1",
     "reflect-metadata": "^0.1.12",
     "typescript": "3.3.3333"
   },
