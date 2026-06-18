@@ -75,7 +75,7 @@ var Container = class extends inversify.Container {
 };
 var container;
 function getContainer() {
-  return container;
+  return container ?? (container = new Container());
 }
 function setContainer(options) {
   return container = new Container(options);

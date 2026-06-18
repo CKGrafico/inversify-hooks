@@ -59,10 +59,12 @@ export class Container extends InversifyContainer {
   }
 }
 
-let container: Container;
+let container: Container | undefined;
 
 export function getContainer(): Container {
-  return container;
+  // Lazily create the default container so resolution works even if a bundler
+  // tree-shakes away the eager initialization in index.ts (sideEffects: false).
+  return (container ??= new Container());
 }
 
 export function setContainer(options?: ContainerOptions): Container {

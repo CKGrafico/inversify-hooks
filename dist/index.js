@@ -73,7 +73,7 @@ var Container = class extends Container$1 {
 };
 var container;
 function getContainer() {
-  return container;
+  return container ?? (container = new Container());
 }
 function setContainer(options) {
   return container = new Container(options);
