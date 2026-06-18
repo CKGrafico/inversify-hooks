@@ -26,6 +26,11 @@
     "type": "git",
     "url": "git+https://github.com/CKGrafico/inversify-hooks.git"
   },
+  "homepage": "https://github.com/CKGrafico/inversify-hooks#readme",
+  "bugs": "https://github.com/CKGrafico/inversify-hooks/issues",
+  "engines": {
+    "node": ">=20.19.0"
+  },
   "keywords": [
     "inversify",
     "inversifyjs",
