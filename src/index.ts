@@ -1,34 +1,16 @@
-import {
-  cid,
-  Container,
-  container,
-  getContainer,
-  Inject,
-  inject,
-  injectable,
-  mockRequest,
-  mockSingleton,
-  mockTransient,
-  resetContainer,
-  setContainer
-} from 'inversify-props';
+import { setContainer } from './container';
+import { idsCache } from './id.helper';
 
-function useInject<T>(id: string | symbol): [T] {
-  return [getContainer().get<T>(id)];
-}
+// Create the default container instance eagerly, so consumers can register
+// dependencies right after importing without any setup step.
+const container = setContainer();
 
-export {
-  useInject,
-  Inject,
-  inject,
-  injectable,
-  Container,
-  cid,
-  resetContainer,
-  mockRequest,
-  mockSingleton,
-  mockTransient,
-  container,
-  setContainer,
-  getContainer
-};
+// Public cache of generated ids, e.g. `cid.IUserService`.
+const cid = idsCache;
+
+export { container, cid };
+export { Container, getContainer, setContainer, resetContainer } from './container';
+export { inject, Inject, injectable } from './inject.helper';
+export { mockRequest, mockSingleton, mockTransient } from './mocks.helper';
+export { useInject } from './use-inject.hook';
+export type { Identifier, IdsCache } from './id.helper';

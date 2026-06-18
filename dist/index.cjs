@@ -1,4 +1,6 @@
-import { Container as Container$1, decorate, injectable as injectable$1, inject as inject$1 } from 'inversify';
+'use strict';
+
+var inversify = require('inversify');
 
 // src/container.ts
 
@@ -44,12 +46,12 @@ function ensureInjectable(constructor) {
     return;
   }
   try {
-    decorate(injectable$1(), constructor);
+    inversify.decorate(inversify.injectable(), constructor);
   } catch {
   }
   decorated.add(constructor);
 }
-var Container = class extends Container$1 {
+var Container = class extends inversify.Container {
   bindTo(constructor, customId) {
     const id = generateIdAndAddToCache(constructor.name, customId);
     ensureInjectable(constructor);
@@ -102,7 +104,7 @@ function cleanParameter(parameter) {
 
 // src/inject.helper.ts
 function injectable() {
-  return (constructor) => injectable$1()(constructor);
+  return (constructor) => inversify.injectable()(constructor);
 }
 function inject(customId) {
   return (target, propertyKey, indexOrDescriptor) => {
@@ -120,7 +122,7 @@ function injectParameterDecorator(target, propertyKey, index, customId) {
     const parameters = getParametersFromConstructor(target);
     id = getOrSetIdFromCache(generateIdName(cleanParameter(parameters[index])));
   }
-  inject$1(id)(target, propertyKey, index);
+  inversify.inject(id)(target, propertyKey, index);
 }
 function injectPropertyDecorator(target, propertyKey, customId) {
   let id = customId;
@@ -163,6 +165,18 @@ function useInject(id) {
 var container2 = setContainer();
 var cid = idsCache;
 
-export { Container, Inject, cid, container2 as container, getContainer, inject, injectable, mockRequest, mockSingleton, mockTransient, resetContainer, setContainer, useInject };
-//# sourceMappingURL=index.js.map
-//# sourceMappingURL=index.js.map
+exports.Container = Container;
+exports.Inject = Inject;
+exports.cid = cid;
+exports.container = container2;
+exports.getContainer = getContainer;
+exports.inject = inject;
+exports.injectable = injectable;
+exports.mockRequest = mockRequest;
+exports.mockSingleton = mockSingleton;
+exports.mockTransient = mockTransient;
+exports.resetContainer = resetContainer;
+exports.setContainer = setContainer;
+exports.useInject = useInject;
+//# sourceMappingURL=index.cjs.map
+//# sourceMappingURL=index.cjs.map

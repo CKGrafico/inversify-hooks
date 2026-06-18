@@ -1,12 +1,25 @@
 {
   "name": "inversify-hooks",
-  "version": "2.1.6",
-  "description": "Wrapper of inversify-props to inject your dependencies in the components, made with TypeScript using hooks.",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "version": "4.0.0",
+  "description": "Dependency injection for React with TypeScript hooks, powered by InversifyJS.",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
   "author": "Quique Fdez Guerra",
   "scripts": {
-    "build": "tsc -p src --outDir dist"
+    "build": "tsup",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "prepublishOnly": "npm run build"
   },
   "license": "MIT",
   "repository": {
@@ -15,19 +28,32 @@
   },
   "keywords": [
     "inversify",
+    "inversifyjs",
     "typescript",
-    "typescript inject",
-    "typescript di",
+    "dependency injection",
     "react di",
     "react inject",
     "react hooks"
   ],
+  "files": [
+    "dist"
+  ],
+  "sideEffects": false,
   "dependencies": {
-    "@types/react": "^16.9.41",
-    "inversify-props": "^2.2.6",
-    "react": "^16.13.1"
+    "inversify": "^8.1.1"
+  },
+  "peerDependencies": {
+    "react": ">=16.8.0"
   },
   "devDependencies": {
-    "typescript": "^3.9.6"
+    "@testing-library/react": "^16.1.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "jsdom": "^25.0.1",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "tsup": "^8.3.5",
+    "typescript": "^5.7.0",
+    "vitest": "^2.1.8"
   }
 }
