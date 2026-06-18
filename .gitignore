@@ -4,3 +4,4 @@ node_modules/
 */dist/
 examples/*/dist/
 /dist
+.claude/launch.json

@@ -6,6 +6,18 @@
       "runtimeExecutable": "npm",
       "runtimeArgs": ["run", "dev", "--prefix", "examples/react-example", "--", "--port", "5179"],
       "port": 5179
+    },
+    {
+      "name": "vue-example",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev", "--prefix", "C:/Projects/Personal/inversify-props/examples/vue", "--", "--port", "5181"],
+      "port": 5181
+    },
+    {
+      "name": "lit-example",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev", "--prefix", "C:/Projects/Personal/inversify-props/examples/lit", "--", "--port", "5182"],
+      "port": 5182
     }
   ]
 }
