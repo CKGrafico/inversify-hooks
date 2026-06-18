@@ -1,11 +1,11 @@
 ---
 name: inversify-hooks
-description: Set up and use dependency injection in React with inversify-hooks (a TypeScript wrapper over InversifyJS / inversify 8). Use when wiring up a DI container in a React app, injecting services into components via the useInject hook, registering singletons/transients, injecting dependencies into other services with @inject, or mocking injected services in tests.
+description: Set up and use dependency injection in React with inversify-hooks (a React layer over inversify-props / InversifyJS 8). Use when wiring up a DI container in a React app, injecting services into components via the useInject hook, registering singletons/transients, injecting dependencies into other services with @inject, or mocking injected services in tests.
 ---
 
 # inversify-hooks
 
-`inversify-hooks` is a small wrapper around [InversifyJS](https://inversify.io/) (inversify 8) that lets React components resolve dependencies from an IoC container through a `useInject` hook. Use this skill when adding or working with dependency injection in a React + TypeScript codebase that uses (or wants to use) this library.
+`inversify-hooks` is a small React layer over [inversify-props](https://github.com/CKGrafico/inversify-props) (which wraps [InversifyJS](https://inversify.io/) 8) that lets React components resolve dependencies from an IoC container through a `useInject` hook. Use this skill when adding or working with dependency injection in a React + TypeScript codebase that uses (or wants to use) this library.
 
 ## When to use this skill
 

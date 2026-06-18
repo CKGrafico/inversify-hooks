@@ -1,7 +1,5 @@
-import { ServiceIdentifier } from 'inversify';
-import { getContainer } from './container';
-import { Identifier } from './id.helper';
+import { getContainer, Id } from 'inversify-props';
 
-export function useInject<T>(id: Identifier): [T] {
-  return [getContainer().get<T>(id as ServiceIdentifier<T>)];
+export function useInject<T>(id: Id): [T] {
+  return [getContainer().get<T>(id)];
 }

@@ -1,6 +1,6 @@
 # Inversify Hooks
 
-Dependency injection for **React + TypeScript**, the easy way. `inversify-hooks` lets your components resolve services from an [InversifyJS](https://inversify.io/) container through a single `useInject` hook — no providers, no boilerplate. Built on **inversify 8**.
+Dependency injection for **React + TypeScript**, the easy way. `inversify-hooks` lets your components resolve services from an [InversifyJS](https://inversify.io/) container through a single `useInject` hook — no providers, no boilerplate. It's a thin React layer over [inversify-props](https://github.com/CKGrafico/inversify-props), which is built on **inversify 8**.
 
 [![npm version](https://img.shields.io/npm/v/inversify-hooks.svg)](https://www.npmjs.com/package/inversify-hooks)
 [![npm downloads](https://img.shields.io/npm/dm/inversify-hooks.svg)](https://www.npmjs.com/package/inversify-hooks)
@@ -44,7 +44,7 @@ That's the whole API surface for a component. The container, scoping, and wiring
 npm install inversify-hooks
 ```
 
-`inversify` is a regular dependency (pulled in for you); `react` (>= 16.8, for hooks) is the only **peer dependency**. TypeScript type definitions ship with the package, and both ESM and CommonJS builds are included. No separate `reflect-metadata` install is needed — inversify 8 no longer requires it.
+`inversify-props` (and transitively `inversify`) is a regular dependency, pulled in for you; `react` (>= 16.8, for hooks) is the only **peer dependency**. TypeScript type definitions ship with the package, and both ESM and CommonJS builds are included. No separate `reflect-metadata` install is needed — inversify 8 no longer requires it.
 
 > **Note:** inversify 8 is ESM-first. Bundler users (Vite, Next, webpack, etc.) need nothing special. Consuming it from a plain CommonJS Node app via `require()` needs Node 20.19+ or 22+.
 
@@ -214,4 +214,4 @@ npx skills add CKGrafico/inversify-hooks
 
 ## Credits
 
-Built on [InversifyJS](https://inversify.io/). Licensed under [MIT](LICENSE).
+A thin React layer over [inversify-props](https://github.com/CKGrafico/inversify-props), built on [InversifyJS](https://inversify.io/). Licensed under [MIT](LICENSE).
