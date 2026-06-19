@@ -7,6 +7,7 @@ Dependency injection for **React + TypeScript**, the easy way. `inversify-hooks`
 [![GitHub license](https://img.shields.io/github/license/CKGrafico/inversify-hooks.svg)](https://github.com/CKGrafico/inversify-hooks/blob/main/LICENSE)
 ![GitHub last commit](https://img.shields.io/github/last-commit/CKGrafico/inversify-hooks/main.svg)
 [![GitHub issues](https://img.shields.io/github/issues/CKGrafico/inversify-hooks.svg)](https://github.com/CKGrafico/inversify-hooks/issues)
+[![skills.sh](https://skills.sh/b/CKGrafico/inversify-hooks)](https://skills.sh/CKGrafico/inversify-hooks)
 
 ![logo](https://i.imgur.com/syVbzU6.gif)
 
