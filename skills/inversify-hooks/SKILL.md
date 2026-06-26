@@ -54,10 +54,27 @@ The generic argument (`<IUserService>`) is only the TypeScript type. The **runti
 
 > **Do NOT pass a `cid` symbol as the first argument.** `container.addSingleton(cid.IUserService, UserService)` is wrong — `addSingleton` takes the class (and an optional *string* id), not a symbol. Passing a symbol throws an opaque `TypeError` with no message. The only correct forms are:
 > ```ts
-> container.addSingleton<IUserService>(UserService);          // ✅ id from class name
-> container.addSingleton<IUserService>(UserService, 'MyId');  // ✅ explicit string id
-> container.addSingleton(cid.IUserService, UserService);      // ❌ throws TypeError
+> container.addSingleton<IUserService>(UserService);                 // ✅ id from class name
+> container.addSingleton<IUserService>(UserService, 'MyId');         // ✅ explicit string id
+> container.addSingleton<IUserService>(UserService, cid.IUserService); // ✅ explicit cid id (see below)
+> container.addSingleton(cid.IUserService, UserService);             // ❌ symbol as FIRST arg → throws TypeError
 > ```
+> A `cid` symbol is only invalid as the **first** argument. As the **second** (the id) it is the recommended minification-safe option.
+
+### Minification-safe registration (Next.js / SWC and other mangling bundlers)
+
+The default id is `Symbol(constructor.name)`. Any minifier that renames classes (notably **Next.js**, which uses the **SWC minifier** and does **not** expose a keep-class-names option) makes that symbol disagree with the `cid.IFoo` your call sites use, and resolution fails **in production only** with `No bindings found for service: "Symbol(IFoo)"`.
+
+The robust fix that requires **no bundler config and no call-site changes** is to pin each binding to its `cid` id at registration:
+
+```ts
+export function buildContainer(): void {
+  container.addSingleton<IApiClient>(ApiClient, cid.IApiClient);
+  container.addSingleton<IUserService>(UserService, cid.IUserService);
+}
+```
+
+Because `cid.IApiClient` returns the **same cached symbol** that `useInject(cid.IApiClient)` and `@inject() private apiClient` resolve to, registration and resolution always agree — regardless of how the class name is mangled. Prefer this over a plain string id when your call sites use `cid` (a string id would not match cid's symbol). If you instead enable keep-names in your bundler (esbuild/Vite `keepNames`, Terser `keep_classnames`/`keep_fnames`), the default registration works unchanged.
 
 ## Injecting into components
 
@@ -152,14 +169,14 @@ it('uses the user service', () => {
 | --- | --- | --- |
 | `No bindings found for service: "Symbol(Foo)"` at a component using `useInject(cid.IFoo)` | Container was never built, or was built *after* render (e.g. in `useEffect`). | Call `buildContainer()` at module load before render — see the Next.js section. |
 | Opaque `TypeError` (no message) thrown from `container.addSingleton(...)` | A `cid` symbol was passed as the first argument. `addSingleton` expects the class, plus an optional **string** id. | Use `container.addSingleton<IFoo>(Foo)`. |
-| Injection works in `dev`, `cid.IFoo` is `undefined` in production | Minifier mangled the class name; `cid` keys come from `constructor.name`. | Enable `keepNames` (esbuild/Vite) or the Terser equivalent. |
+| Injection works in `dev`, fails in production with `No bindings found for service: "Symbol(IFoo)"` / `cid.IFoo` undefined | Minifier mangled the class name; the default id is `Symbol(constructor.name)`. | Enable `keepNames` (esbuild/Vite) or `keep_classnames`/`keep_fnames` (Terser). **Next.js/SWC doesn't expose keep-names** → register with an explicit cid id instead: `container.addSingleton<IFoo>(Foo, cid.IFoo)`. See "Minification-safe registration". |
 | `@inject()` property is `undefined` at runtime | `useDefineForClassFields: true` shadows the injected getter. | Set `useDefineForClassFields: false` (or keep `target` ≤ ES2020). |
 | `No bindings found` only for services injected into *other* services via `@inject()` | Property name does not match the registered class name. | Name the property after the class (`@inject() private fooService!: IFooService` → id `FooService`), or pass an explicit id. |
 
 ## Gotchas
 
 - **`useDefineForClassFields` must be `false`** (it defaults to `false` only when `target` is below `ES2022`). With class-field define semantics on, the instance field shadows the injected getter and the property is `undefined`. Keep `target` at `ES2020` or set the flag explicitly.
-- **Minification must keep names.** Ids come from `constructor.name`. If a bundler mangles class names, `cid.IXxx` becomes `undefined` and resolution fails in production only. Enable `keepNames` (esbuild/Vite) or the equivalent Terser/Uglify setting.
+- **Minification mangles class names.** The default id is `Symbol(constructor.name)`, so a bundler that renames classes breaks resolution in production only (`No bindings found for service: "Symbol(IFoo)"`). Either keep names (esbuild/Vite `keepNames`, Terser `keep_classnames`/`keep_fnames`) **or** register with an explicit cid id: `container.addSingleton<IFoo>(Foo, cid.IFoo)`. The explicit-cid route is the only reliable option on **Next.js/SWC**, which doesn't expose a keep-class-names flag. See "Minification-safe registration".
 - **Use legacy decorators, not TC39.** inversify 8 still requires `experimentalDecorators: true`. Do not enable the standard/stage-3 decorators for these classes.
 - **Register before render.** Call the container-builder before the first render. With `createRoot(...).render(...)` call it just above that line; in Next.js App Router or any framework where you don't own the render call, build it at module-load time in a `'use client'` module the layout imports — **never in `useEffect`** (render runs first and `useInject` throws `No bindings found`). See "Next.js App Router".
 - The package ships **both ESM and CommonJS** builds. Bundlers need no special config; consuming via `require()` from plain Node needs Node 20.19+ or 22+ (an inversify 8 requirement).
