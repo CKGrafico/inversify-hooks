@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>inversify-hooks — Dependency injection for React, one hook</title>
+  <meta name="description" content="Bring dependency injection to React with a single useInject hook. Built on inversify-props and InversifyJS 8 — no providers, no context boilerplate." />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2322d3ee'/%3E%3Ctext x='32' y='44' font-family='monospace' font-size='30' font-weight='bold' text-anchor='middle' fill='%230d1117'%3Eu(%3C/text%3E%3C/svg%3E" />
+  <meta property="og:title" content="inversify-hooks — Dependency injection for React, one hook" />
+  <meta property="og:description" content="Resolve any service from your container with a single useInject hook. No providers, no context boilerplate." />
+  <meta property="og:url" content="https://inversify-hooks.ckgrafico.com" />
+  <meta name="twitter:card" content="summary" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="theme-hooks">
+
+  <!-- ======================== NAV ======================== -->
+  <header class="nav">
+    <div class="container nav-inner">
+      <a class="nav-brand" href="#top">
+        <span class="brand-mark" aria-hidden="true">u(</span>
+        <span>inversify-hooks</span>
+      </a>
+      <nav class="nav-links">
+        <a href="#quick-start">Quick start</a>
+        <a href="#lifetimes">Lifetimes</a>
+        <a href="#api">API</a>
+        <a href="https://inversify-props.ckgrafico.com" class="nav-sibling">inversify-props ↗</a>
+        <a href="https://github.com/CKGrafico/inversify-hooks" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.npmjs.com/package/inversify-hooks" target="_blank" rel="noopener">npm</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- ======================== HERO ======================== -->
+    <section class="hero">
+      <div class="container hero-inner">
+        <div class="hero-mark" aria-hidden="true">useInject()</div>
+        <h1>Dependency injection for React<br /><span class="accent">in a single hook</span></h1>
+        <p class="hero-sub">
+          Resolve any service from your container with one <code>useInject()</code> call.
+          No providers wrapping your tree, no context boilerplate, no prop-drilling.
+          Built on <a href="https://inversify-props.ckgrafico.com">inversify-props</a> and
+          <a href="https://inversify.io" target="_blank" rel="noopener">InversifyJS 8</a>.
+        </p>
+
+        <div class="install-box" role="group" aria-label="Install command">
+          <span class="install-prompt">$</span>
+          <code>npm install inversify-hooks</code>
+          <button class="copy-btn" data-copy="npm install inversify-hooks" aria-label="Copy install command">
+            <svg class="icon-copy" width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"/><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"/></svg>
+            <svg class="icon-check" width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 1.06-1.06L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z"/></svg>
+          </button>
+        </div>
+
+        <div class="hero-badges">
+          <a href="https://www.npmjs.com/package/inversify-hooks" target="_blank" rel="noopener"><img src="https://img.shields.io/npm/v/inversify-hooks?style=flat-square&color=22d3ee&labelColor=161b22" alt="npm version" /></a>
+          <a href="https://www.npmjs.com/package/inversify-hooks" target="_blank" rel="noopener"><img src="https://img.shields.io/npm/dm/inversify-hooks?style=flat-square&color=22d3ee&labelColor=161b22" alt="npm downloads" /></a>
+          <a href="https://github.com/CKGrafico/inversify-hooks/blob/main/LICENSE" target="_blank" rel="noopener"><img src="https://img.shields.io/npm/l/inversify-hooks?style=flat-square&color=22d3ee&labelColor=161b22" alt="license" /></a>
+        </div>
+
+        <p class="hero-platforms">React 16.8+ &middot; TypeScript-first &middot; ESM + CommonJS</p>
+      </div>
+    </section>
+
+    <!-- ======================== QUICK START ======================== -->
+    <section class="section" id="quick-start">
+      <div class="container">
+        <h2 class="reveal">Register once, inject anywhere</h2>
+        <p class="section-sub reveal">Register your services at the entry point, then pull them into any component with the hook.</p>
+
+        <div class="code-window reveal">
+          <div class="code-bar">
+            <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+            <span class="code-title">main.tsx</span>
+          </div>
+          <pre class="code-body"><code><span class="k">import</span> { createRoot } <span class="k">from</span> <span class="s">'react-dom/client'</span>;
+<span class="k">import</span> { container } <span class="k">from</span> <span class="s">'inversify-hooks'</span>;
+<span class="k">import</span> <span class="t">App</span> <span class="k">from</span> <span class="s">'./App'</span>;
+<span class="k">import</span> { <span class="t">IUserService</span>, <span class="t">UserService</span> } <span class="k">from</span> <span class="s">'./services'</span>;
+
+container.<span class="f">addSingleton</span>&lt;<span class="t">IUserService</span>&gt;(<span class="t">UserService</span>);
+
+<span class="f">createRoot</span>(document.<span class="f">getElementById</span>(<span class="s">'root'</span>)!).<span class="f">render</span>(&lt;<span class="t">App</span> /&gt;);</code></pre>
+        </div>
+
+        <div class="code-window reveal">
+          <div class="code-bar">
+            <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+            <span class="code-title">App.tsx</span>
+          </div>
+          <pre class="code-body"><code><span class="k">import</span> { cid, useInject } <span class="k">from</span> <span class="s">'inversify-hooks'</span>;
+<span class="k">import</span> { <span class="t">IUserService</span> } <span class="k">from</span> <span class="s">'./services'</span>;
+
+<span class="k">export default function</span> <span class="f">App</span>() {
+  <span class="k">const</span> [userService] = <span class="f">useInject</span>&lt;<span class="t">IUserService</span>&gt;(cid.<span class="t">IUserService</span>);
+
+  <span class="k">return</span> &lt;<span class="t">h1</span>&gt;Hello, {userService.<span class="f">getName</span>()}&lt;/<span class="t">h1</span>&gt;;
+}</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================== SERVICE-TO-SERVICE ======================== -->
+    <section class="section" id="services">
+      <div class="container">
+        <h2 class="reveal">Services injecting services</h2>
+        <p class="section-sub reveal">Outside of components, use property injection — the ID is inferred from the property name.</p>
+        <div class="code-window reveal">
+          <div class="code-bar">
+            <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+            <span class="code-title">order.service.ts</span>
+          </div>
+          <pre class="code-body"><code><span class="k">import</span> { inject, injectable } <span class="k">from</span> <span class="s">'inversify-hooks'</span>;
+
+<span class="d">@injectable</span>()
+<span class="k">export class</span> <span class="t">OrderService</span> <span class="k">implements</span> <span class="t">IOrderService</span> {
+  <span class="d">@inject</span>() <span class="k">private</span> userService!: <span class="t">IUserService</span>;
+
+  <span class="f">placeOrder</span>() {
+    <span class="k">return</span> <span class="k">this</span>.userService.<span class="f">getName</span>();
+  }
+}</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================== LIFETIMES ======================== -->
+    <section class="section" id="lifetimes">
+      <div class="container">
+        <h2 class="reveal">Three lifetimes</h2>
+        <div class="cards-grid three reveal">
+          <div class="card">
+            <h3>addSingleton</h3>
+            <p>One shared instance for the whole app. The most common choice for services.</p>
+          </div>
+          <div class="card">
+            <h3>addTransient</h3>
+            <p>A fresh instance every time the dependency is resolved.</p>
+          </div>
+          <div class="card">
+            <h3>addRequest</h3>
+            <p>One instance per request scope — shared within a single resolution tree.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================== API ======================== -->
+    <section class="section" id="api">
+      <div class="container">
+        <h2 class="reveal">Core API</h2>
+        <div class="api-table reveal">
+          <div class="api-row"><code>useInject&lt;T&gt;(id)</code><p>React hook returning <code>[T]</code> — the resolved service instance.</p></div>
+          <div class="api-row"><code>container</code><p>Shared container — <code>addSingleton()</code>, <code>addTransient()</code>, <code>addRequest()</code>.</p></div>
+          <div class="api-row"><code>cid</code><p>Auto-generated cache of IDs, e.g. <code>cid.IUserService</code>.</p></div>
+          <div class="api-row"><code>@injectable() / @inject()</code><p>Decorators for services and service-to-service injection.</p></div>
+          <div class="api-row"><code>mockSingleton / resetContainer()</code><p>Testing utilities — swap implementations, reset state between tests.</p></div>
+          <div class="api-row"><code>getContainer() / setContainer()</code><p>Access or replace the underlying InversifyJS container.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================== SIBLING ======================== -->
+    <section class="section">
+      <div class="container narrow reveal">
+        <a class="sibling-card" href="https://inversify-props.ckgrafico.com">
+          <div>
+            <h3>Not using React? → inversify-props</h3>
+            <p>The framework-agnostic core this library builds on — the same container and decorators for Vue, Lit, or vanilla TypeScript.</p>
+          </div>
+          <span class="sibling-arrow" aria-hidden="true">→</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- ======================== CTA ======================== -->
+    <section class="section cta-section" id="get-started">
+      <div class="container narrow center reveal">
+        <h2>Get started</h2>
+        <div class="install-box big" role="group" aria-label="Install command">
+          <span class="install-prompt">$</span>
+          <code>npm install inversify-hooks</code>
+          <button class="copy-btn" data-copy="npm install inversify-hooks" aria-label="Copy install command">
+            <svg class="icon-copy" width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"/><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"/></svg>
+            <svg class="icon-check" width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 1.06-1.06L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z"/></svg>
+          </button>
+        </div>
+        <p class="cta-note">Requires React 16.8+ and Node.js 20.19+ &middot; MIT licensed</p>
+        <div class="cta-links">
+          <a class="btn primary" href="https://github.com/CKGrafico/inversify-hooks" target="_blank" rel="noopener">Star on GitHub</a>
+          <a class="btn" href="https://github.com/CKGrafico/inversify-hooks#readme" target="_blank" rel="noopener">Read the full docs</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ======================== FOOTER ======================== -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <span class="brand-mark small" aria-hidden="true">u(</span>
+        <span>inversify-hooks</span>
+      </div>
+      <p>MIT © <a href="https://github.com/ckgrafico" target="_blank" rel="noopener">ckgrafico</a></p>
+      <div class="footer-links">
+        <a href="https://github.com/CKGrafico/inversify-hooks" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.npmjs.com/package/inversify-hooks" target="_blank" rel="noopener">npm</a>
+        <a href="https://inversify-props.ckgrafico.com">inversify-props</a>
+        <a href="https://inversify.io" target="_blank" rel="noopener">InversifyJS</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -2,6 +2,8 @@
 
 Dependency injection for **React + TypeScript**, the easy way. `inversify-hooks` lets your components resolve services from an [InversifyJS](https://inversify.io/) container through a single `useInject` hook — no providers, no boilerplate. It's a thin React layer over [inversify-props](https://github.com/CKGrafico/inversify-props), which is built on **inversify 8**.
 
+**[inversify-hooks.ckgrafico.com](https://inversify-hooks.ckgrafico.com)**
+
 [![npm version](https://img.shields.io/npm/v/inversify-hooks.svg)](https://www.npmjs.com/package/inversify-hooks)
 [![npm downloads](https://img.shields.io/npm/dm/inversify-hooks.svg)](https://www.npmjs.com/package/inversify-hooks)
 [![GitHub license](https://img.shields.io/github/license/CKGrafico/inversify-hooks.svg)](https://github.com/CKGrafico/inversify-hooks/blob/main/LICENSE)
